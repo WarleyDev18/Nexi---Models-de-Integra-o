@@ -13,6 +13,17 @@ Decisões: PokéAPI (sem chave) · Python 3.13 · `requests` + `pytest` · argpa
 - [x] 7. `README.md` e `RESPOSTAS.md` (modelos, clear/compact, riscos sem plan mode)
 - [x] 8. Commit e push para o GitHub (só com confirmação do usuário)
 
+## API consumida
+- Endpoint: `GET https://pokeapi.co/api/v2/pokemon/{nome}` (nome em minúsculas; sem chave de API)
+- Campos usados do JSON: `name`, `id`, `height` (dm), `weight` (hg), `types[].type.name`, `stats[].base_stat` e `stats[].stat.name`
+- Respostas tratadas: 200 (ok), 404 (Pokémon não encontrado), outros códigos HTTP, timeout (10s) e falha de rede, todos viram `PokemonError`
+
+## Estrutura
+- `pokedex/api.py` (rede) · `pokedex/formatar.py` (texto, funções puras) · `pokedex/cli.py` (argparse, exit codes) · `tests/` (pytest, rede mockada)
+
+## Como este plano foi feito
+Gerado em plan mode: o Claude fez perguntas (API/stack e local da pasta), apresentou o plano e a execução só começou depois da aprovação do usuário.
+
 ## Modelos por etapa
 - Planejamento: Opus (decisões caras de errar)
 - Execução: Sonnet (código bem especificado)
